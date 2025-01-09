@@ -1,6 +1,17 @@
-FROM python:3.9
-WORKDIR /usr/src/app
-COPY app.py .
-RUN pip install flask pymongo
+# שימוש בתמונה של Python
+FROM python:3.9-slim
+
+# הגדרת תיקיית העבודה
+WORKDIR /app
+
+# העתקת כל הקבצים לתוך הקונטיינר
+COPY . .
+
+# התקנת הספריות הנדרשות
+RUN pip install --no-cache-dir flask pymongo
+
+# חשיפת הפורט
 EXPOSE 5000
+
+# פקודת ההפעלה של השירות
 CMD ["python", "app.py"]

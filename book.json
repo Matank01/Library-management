@@ -1,0 +1,182 @@
+[
+  {
+    "_id": "1",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "category": "Classic",
+    "status": "available",
+    "average_rating": 4.4,
+    "borrower_id": null
+  },
+  {
+    "_id": "2",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "category": "Fiction",
+    "status": "available",
+    "average_rating": 4.8,
+    "borrower_id": null
+  },
+  {
+    "_id": "3",
+    "title": "1984",
+    "author": "George Orwell",
+    "category": "Dystopian",
+    "status": "borrowed",
+    "average_rating": 4.7,
+    "borrower_id": "123"
+  },
+  {
+    "_id": "4",
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "category": "Romance",
+    "status": "available",
+    "average_rating": 4.6,
+    "borrower_id": null
+  },
+  {
+    "_id": "5",
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "category": "Fiction",
+    "status": "borrowed",
+    "average_rating": 4.3,
+    "borrower_id": "124"
+  },
+  {
+    "_id": "6",
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "category": "Fantasy",
+    "status": "available",
+    "average_rating": 4.9,
+    "borrower_id": null
+  },
+  {
+    "_id": "7",
+    "title": "Fahrenheit 451",
+    "author": "Ray Bradbury",
+    "category": "Science Fiction",
+    "status": "available",
+    "average_rating": 4.5,
+    "borrower_id": null
+  },
+  {
+    "_id": "8",
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "category": "Philosophy",
+    "status": "available",
+    "average_rating": 4.2,
+    "borrower_id": null
+  },
+  {
+    "_id": "9",
+    "title": "The Road",
+    "author": "Cormac McCarthy",
+    "category": "Post-Apocalyptic",
+    "status": "borrowed",
+    "average_rating": 4.1,
+    "borrower_id": "125"
+  },
+  {
+    "_id": "10",
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "category": "Dystopian",
+    "status": "available",
+    "average_rating": 4.6,
+    "borrower_id": null
+  },
+  {
+    "_id": "11",
+    "title": "The Little Prince",
+    "author": "Antoine de Saint-Exupéry",
+    "category": "Children",
+    "status": "available",
+    "average_rating": 4.8,
+    "borrower_id": null
+  },
+  {
+    "_id": "12",
+    "title": "Moby Dick",
+    "author": "Herman Melville",
+    "category": "Adventure",
+    "status": "available",
+    "average_rating": 4.1,
+    "borrower_id": null
+  },
+  {
+    "_id": "13",
+    "title": "The Odyssey",
+    "author": "Homer",
+    "category": "Epic",
+    "status": "available",
+    "average_rating": 4.7,
+    "borrower_id": null
+  },
+  {
+    "_id": "14",
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "category": "Historical",
+    "status": "available",
+    "average_rating": 4.5,
+    "borrower_id": null
+  },
+  {
+    "_id": "15",
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "category": "Philosophical",
+    "status": "available",
+    "average_rating": 4.6,
+    "borrower_id": null
+  },
+  {
+    "_id": "16",
+    "title": "The Divine Comedy",
+    "author": "Dante Alighieri",
+    "category": "Classic",
+    "status": "available",
+    "average_rating": 4.9,
+    "borrower_id": null
+  },
+  {
+    "_id": "17",
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde",
+    "category": "Gothic",
+    "status": "borrowed",
+    "average_rating": 4.4,
+    "borrower_id": "126"
+  },
+  {
+    "_id": "18",
+    "title": "Anna Karenina",
+    "author": "Leo Tolstoy",
+    "category": "Romance",
+    "status": "available",
+    "average_rating": 4.3,
+    "borrower_id": null
+  },
+  {
+    "_id": "19",
+    "title": "Les Misérables",
+    "author": "Victor Hugo",
+    "category": "Drama",
+    "status": "available",
+    "average_rating": 4.7,
+    "borrower_id": null
+  },
+  {
+    "_id": "20",
+    "title": "Dracula",
+    "author": "Bram Stoker",
+    "category": "Horror",
+    "status": "available",
+    "average_rating": 4.5,
+    "borrower_id": null
+  }
+]
