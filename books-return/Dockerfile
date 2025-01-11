@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir flask pymongo
 EXPOSE 5005
 
 # Define the command to run the application
-CMD ["python", "return_book_service.py"]
+CMD ["python", "app.py"]

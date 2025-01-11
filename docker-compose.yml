@@ -10,6 +10,7 @@ services:
       - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
     networks:
       - app-network
+
   users-delete:
     build:
       context: ./users-delete
@@ -20,6 +21,73 @@ services:
       - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
     networks:
       - app-network
+
+  books-add:
+    build:
+      context: ./books-add
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
+    networks:
+      - app-network
+
+  books-borrow:
+    build:
+      context: ./books-borrow
+      dockerfile: Dockerfile
+    ports:
+      - "5004:5004"
+    environment:
+      - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
+    networks:
+      - app-network
+
+  books-return:
+    build:
+      context: ./books-return
+      dockerfile: Dockerfile
+    ports:
+      - "5005:5005"
+    environment:
+      - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
+    networks:
+      - app-network
+
+  books-rate:
+    build:
+      context: ./books-rate
+      dockerfile: Dockerfile
+    ports:
+      - "5006:5006"
+    environment:
+      - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
+    networks:
+      - app-network
+
+  books-search:
+    build:
+      context: ./books-search
+      dockerfile: Dockerfile
+    ports:
+      - "5003:5003"
+    environment:
+      - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
+    networks:
+      - app-network
+
+  reports-basic:
+    build:
+      context: ./reports-basic
+      dockerfile: Dockerfile
+    ports:
+      - "5007:5007"
+    environment:
+      - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
