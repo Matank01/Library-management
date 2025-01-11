@@ -1,42 +1,75 @@
-# File: borrow_book_service.py
 from flask import Flask, jsonify, request
-from pymongo import MongoClient
+from pymongo import MongoClient, errors
+from bson.objectid import ObjectId
+import traceback
 
-# Initialize Flask app
 app = Flask(__name__)
 
-# Initialize MongoDB client
-client = MongoClient("mongodb://mongodb:27017/")
-db = client.library_management
-books_collection = db.books
-borrows_collection = db.borrows
+# MongoDB Connection
+try:
+    MONGO_URI = "mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library"
+    client = MongoClient(MONGO_URI)
+    client.admin.command('ping')  # Check connection
+    print("Connected to MongoDB successfully")
+except errors.ServerSelectionTimeoutError as e:
+    print(f"Failed to connect to MongoDB: {e}")
+    traceback.print_exc()
+    client = None
 
-# Endpoint to borrow a book
-@app.route('/borrow', methods=['POST'])
+# Database and Collections
+if client:
+    db = client["library"]
+    books_collection = db["books"]
+else:
+    db = None
+    books_collection = None
+
+@app.route('/borrow-book', methods=['POST'])
 def borrow_book():
-    # Get user ID and book ID from request
-    data = request.json
-    user_id = data.get("user_id")
-    book_id = data.get("book_id")
+    """
+    Borrow a book from the library.
+    
+    Request JSON:
+        {
+            "user_id": "12345",
+            "book_id": "1"
+        }
+    
+    Returns:
+        - 200: If the book is borrowed successfully.
+        - 400: If required fields are missing or invalid.
+        - 404: If the book is not found or already borrowed.
+        - 500: For database connection or unexpected errors.
+    """
+    if books_collection is None :
+        return jsonify({"error": "Database connection is not established"}), 500
 
-    # Validate input data
-    if not user_id or not book_id:
-        return jsonify({"error": "Missing user_id or book_id"}), 400
+    try:
+        # Parse request data
+        data = request.json
+        if not data or "user_id" not in data or "book_id" not in data:
+            return jsonify({"error": "Invalid request. 'user_id' and 'book_id' are required."}), 400
 
-    # Check if the book is available
-    book = books_collection.find_one({"_id": book_id})
-    if not book:
-        return jsonify({"error": "Book not found"}), 404
-    if book.get("status") == "borrowed":
-        return jsonify({"error": "Book is already borrowed"}), 409
+        user_id = data["user_id"]
+        book_id = data["book_id"]
 
-    # Update book status to "borrowed"
-    books_collection.update_one({"_id": book_id}, {"$set": {"status": "borrowed"}})
+        # Check if the book exists and is available
+        book = books_collection.find_one({"_id": ObjectId(book_id)})
+        if not book:
+            return jsonify({"error": "Book not found"}), 404
 
-    # Log the borrowing information
-    borrows_collection.insert_one({"user_id": user_id, "book_id": book_id, "status": "borrowed"})
+        if book["status"] == "borrowed":
+            return jsonify({"error": "Book is already borrowed"}), 409
 
-    return jsonify({"message": "Book borrowed successfully"}), 200
+        # Update book status and log borrowing
+        books_collection.update_one({"_id": ObjectId(book_id)}, {"$set": {"status": "borrowed", "borrower_id": user_id}})
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5004, debug=True)
+        return jsonify({"message": "Book borrowed successfully"}), 200
+
+    except Exception as e:
+        print(f"Unexpected error occurred: {e}")
+        traceback.print_exc()
+        return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5004)
