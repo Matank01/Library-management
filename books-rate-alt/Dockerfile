@@ -15,4 +15,4 @@ COPY . /app
 EXPOSE 5009
 
 # Define the command to run the application
-CMD ["node", "alt_rating_service.js"]
+CMD ["node", "app.js"]

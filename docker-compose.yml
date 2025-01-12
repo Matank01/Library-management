@@ -66,12 +66,33 @@ services:
     networks:
       - app-network
 
+  books-rate-alt:
+    build:
+      context: ./books-rate-alt
+      dockerfile: Dockerfile
+    ports:
+      - "5009:5009"
+    environment:
+      - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
+    networks:
+      - app-network
+
   books-search:
     build:
       context: ./books-search
       dockerfile: Dockerfile
     ports:
       - "5003:5003"
+    environment:
+      - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
+    networks:
+      - app-network
+  books-search-alt:
+    build:
+      context: ./books-search-alt
+      dockerfile: Dockerfile
+    ports:
+      - "5008:5008"
     environment:
       - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
     networks:
@@ -87,6 +108,7 @@ services:
       - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
     networks:
       - app-network
+
 
 networks:
   app-network:

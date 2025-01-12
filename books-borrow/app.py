@@ -62,7 +62,13 @@ def borrow_book():
             return jsonify({"error": "Book is already borrowed"}), 409
 
         # Update book status and log borrowing
-        books_collection.update_one({"_id": ObjectId(book_id)}, {"$set": {"status": "borrowed", "borrower_id": user_id}})
+        books_collection.update_one({"_id": ObjectId(book_id)},
+    {
+        "$set": {"status": "borrowed", "borrower_id": user_id},
+        "$inc": {"count": 1}  # Increment the count field by 1
+    }
+        
+)
 
         return jsonify({"message": "Book borrowed successfully"}), 200
 

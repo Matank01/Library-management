@@ -15,4 +15,4 @@ COPY . /app
 EXPOSE 5008
 
 # Define the command to run the application
-CMD ["node", "alt_search_service.js"]
+CMD ["node", "app.js"]

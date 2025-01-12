@@ -5,13 +5,26 @@ from pymongo import MongoClient
 # Initialize Flask app
 app = Flask(__name__)
 
-# Initialize MongoDB client
-client = MongoClient("mongodb://mongodb:27017/")
-db = client.library_management
-books_collection = db.books
+try:
+    MONGO_URI = "mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library"
+    client = MongoClient(MONGO_URI)
+    client.admin.command('ping')  # Check connection
+    print("Connected to MongoDB successfully")
+except errors.ServerSelectionTimeoutError as e:
+    print(f"Failed to connect to MongoDB: {e}")
+    traceback.print_exc()
+    client = None
+
+# Database and Collections
+if client:
+    db = client["library"]
+    books_collection = db["books"]
+else:
+    db = None
+    books_collection = None
 
 # Endpoint to search books
-@app.route('/books', methods=['GET'])
+@app.route('/search', methods=['GET'])
 def search_books():
     # Get query parameters
     query_params = request.args

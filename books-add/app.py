@@ -57,7 +57,8 @@ def add_book():
             "status": "available",
             "average_rating": 0,
             "ratings": [],
-            "borrower_id": None  
+            "borrower_id": None  ,
+            "count": 0
         }
 
         # הוספת הספר ל- MongoDB
