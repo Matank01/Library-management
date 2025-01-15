@@ -2,7 +2,7 @@ version: "3.8"
 services:
   users-register:
     build:
-      context: ./users-register
+      context: ./main/users-register
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
@@ -13,7 +13,7 @@ services:
 
   users-delete:
     build:
-      context: ./users-delete
+      context: ./main/users-delete
       dockerfile: Dockerfile
     ports:
       - "5001:5001"
@@ -24,7 +24,7 @@ services:
 
   books-add:
     build:
-      context: ./books-add
+      context: ./main/books-add
       dockerfile: Dockerfile
     ports:
       - "5002:5002"
@@ -35,7 +35,7 @@ services:
 
   books-borrow:
     build:
-      context: ./books-borrow
+      context: ./main/books-borrow
       dockerfile: Dockerfile
     ports:
       - "5004:5004"
@@ -46,7 +46,7 @@ services:
 
   books-return:
     build:
-      context: ./books-return
+      context: ./main/books-return
       dockerfile: Dockerfile
     ports:
       - "5005:5005"
@@ -57,7 +57,7 @@ services:
 
   books-rate:
     build:
-      context: ./books-rate
+      context: ./main/books-rate
       dockerfile: Dockerfile
     ports:
       - "5006:5006"
@@ -68,7 +68,7 @@ services:
 
   books-rate-alt:
     build:
-      context: ./books-rate-alt
+      context: ./alt/books-rate-alt
       dockerfile: Dockerfile
     ports:
       - "5009:5009"
@@ -79,7 +79,7 @@ services:
 
   books-search:
     build:
-      context: ./books-search
+      context: ./main/books-search
       dockerfile: Dockerfile
     ports:
       - "5003:5003"
@@ -89,7 +89,7 @@ services:
       - app-network
   books-search-alt:
     build:
-      context: ./books-search-alt
+      context: ./alt/books-search-alt
       dockerfile: Dockerfile
     ports:
       - "5008:5008"
@@ -100,7 +100,7 @@ services:
 
   reports-basic:
     build:
-      context: ./reports-basic
+      context: ./main/reports-basic
       dockerfile: Dockerfile
     ports:
       - "5007:5007"
@@ -108,7 +108,6 @@ services:
       - MONGO_URI=mongodb+srv://matank222:ElzWhd3CUam4K8iw@library.l5ntd.mongodb.net/?retryWrites=true&w=majority&appName=library
     networks:
       - app-network
-
 
 networks:
   app-network:
